@@ -1,0 +1,50 @@
+.login-modal {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content {
+  h2.mat-headline-4 {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  mat-form-field {
+    margin-bottom: 20px;
+  }
+
+  input[matInput] {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button[mat-raised-button] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .forgot-password {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #4CAF50;
+      text-decoration: none;
+    }
+  }
+    /* Add this to your login.component.scss file */
+  .error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
+}

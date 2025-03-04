@@ -19,6 +19,8 @@ temp/
 # Angular cache folder
 **/.angular/cache/
 
+**/proxy.conf.json
+
 # Coverage directories (if you generate tests coverage)
 coverage/
 **/coverage/

@@ -13,7 +13,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async signIn(username: string, password: string) {
+  async login(username: string, password: string) {
     const user = await this.userService.findOneByNameOrEmail(username);
 
     if (password == (await decrypt(user.password))) {
@@ -26,7 +26,7 @@ export class AuthService {
     throw new UnauthorizedException(`Wrong password for user ${username}`);
   }
 
-  async signInAfterRegistration(user: User) {
+  async loginAfterRegistration(user: User) {
     const payload: TokenPayload = { sub: user.id, role: user.role };
 
     return {
@@ -42,7 +42,7 @@ export class AuthService {
       password: passwordHash,
       role: UserRole.USER
     })
-    const result = await this.signInAfterRegistration(user);
+    const result = await this.loginAfterRegistration(user);
     return result
   }
 
@@ -54,7 +54,7 @@ export class AuthService {
       password: passwordHash,
       role: role || UserRole.USER
     })
-    const result = await this.signInAfterRegistration(user);
+    const result = await this.loginAfterRegistration(user);
     return result
   }
 }

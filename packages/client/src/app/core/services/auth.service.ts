@@ -16,9 +16,9 @@ export class AuthService {
     return !!localStorage.getItem('access_token') || !!this.getCookie('access_token');
   }
 
-  login(credentials: LoginData): Observable<any> {
-    console.log('Calling login API with credentials:', credentials);
-    return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
+  login(loginData: LoginData): Observable<any> {
+    console.log('Calling login API with credentials:', loginData);
+    return this.http.post<any>(`${this.apiUrl}/login`, loginData).pipe(
       tap((response) => {
         console.log('Login API response:', response);
         const token = response.access_token;

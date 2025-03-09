@@ -19,13 +19,13 @@ export class AuthController {
   @ApiResponse({ status: 401, description: 'Wrong password or unauthorized' })
   @ApiResponse({ status: 404, description: 'User not found' })
   @ApiResponse({ status: 400, description: 'Bad request' })
-  async signIn(@Body() dto: LoginDto) {
+  async login(@Body() dto: LoginDto) {
     if (!dto.username || !dto.password) {
       throw new Error('Username and password are required');
     }
     const username = dto.username.trim();
     const password = dto.password;
-    const result = await this.authService.signIn(username, password);
+    const result = await this.authService.login(username, password);
     return result;
   }
 

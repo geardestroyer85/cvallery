@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { LoginData } from 'shared'
+import { LoginData, LoginRes } from 'shared'
 
 @Injectable({
   providedIn: 'root',
@@ -16,18 +16,19 @@ export class AuthService {
     return !!localStorage.getItem('access_token') || !!this.getCookie('access_token');
   }
 
-  login(loginData: LoginData): Observable<any> {
+  login(loginData: LoginData): Observable<LoginRes> {
     console.log('Calling login API with credentials:', loginData);
-    return this.http.post<any>(`${this.apiUrl}/login`, loginData).pipe(
+    return this.http.post<LoginRes>(`${this.apiUrl}/login`, loginData).pipe(
       tap((response) => {
         console.log('Login API response:', response);
         const token = response.access_token;
-        localStorage.setItem('access_token', token);
+        // Saving tokens to only cookie, disabled local storage
+        // 
+        // localStorage.setItem('access_token', token);
         this.setCookie('access_token', token, 1);
       })
     );
-  }
-  
+  }  
   register(userDetails: { username: string; email: string; password: string }): Observable<any> {
     console.log('Calling register API with user details:', userDetails);
     return this.http.post<any>(`${this.apiUrl}/register`, userDetails).pipe(

@@ -6,6 +6,7 @@ import { UserRole } from 'src/core/consts/enum';
 import { Public } from './auth.guard';
 import { RegisterDto } from './dto/register.dto';
 import { RegisterByAdminDto } from './dto/register-by-admin.dto';
+import { LoginRes } from 'shared';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -19,7 +20,7 @@ export class AuthController {
   @ApiResponse({ status: 401, description: 'Wrong password or unauthorized' })
   @ApiResponse({ status: 404, description: 'User not found' })
   @ApiResponse({ status: 400, description: 'Bad request' })
-  async login(@Body() dto: LoginDto) {
+  async login(@Body() dto: LoginDto): Promise<LoginRes> {
     if (!dto.username || !dto.password) {
       throw new Error('Username and password are required');
     }

@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev:shared": "pnpm --filter shared watch",
     "dev:server": "pnpm --filter server start:dev",
     "dev:client": "pnpm --filter client start",
-    "dev": "concurrently \"pnpm dev:server\" \"pnpm dev:client\""
+    "dev": "concurrently --names \"SHARED,SERVER,CLIENT\" \"pnpm dev:shared\" \"pnpm dev:server\" \"pnpm dev:client\""
   },
   "keywords": [],
   "author": "",

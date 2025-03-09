@@ -4,6 +4,7 @@ import { decrypt, encrypt } from 'src/utils/functions';
 import { JwtService } from '@nestjs/jwt';
 import { TokenPayload } from './auth.type';
 import { UserRole } from 'src/core/consts/enum';
+import { User } from '../users/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -25,6 +26,14 @@ export class AuthService {
     throw new UnauthorizedException(`Wrong password for user ${username}`);
   }
 
+  async signInAfterRegistration(user: User) {
+    const payload: TokenPayload = { sub: user.id, role: user.role };
+
+    return {
+        access_token: await this.jwtService.signAsync(payload),
+    }
+  }
+
   async register(username: string, email: string, password: string) {
     const passwordHash = await encrypt(password);
     const user = await this.userService.create({
@@ -33,7 +42,8 @@ export class AuthService {
       password: passwordHash,
       role: UserRole.USER
     })
-    return user
+    const result = await this.signInAfterRegistration(user);
+    return result
   }
 
   async registerByAdmin(username: string, email: string, password: string, role?: UserRole) {
@@ -44,6 +54,7 @@ export class AuthService {
       password: passwordHash,
       role: role || UserRole.USER
     })
-    return user
+    const result = await this.signInAfterRegistration(user);
+    return result
   }
 }

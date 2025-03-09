@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { LoginData } from 'shared'
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class AuthService {
     return !!localStorage.getItem('access_token') || !!this.getCookie('access_token');
   }
 
-  login(credentials: { username: string; password: string }): Observable<any> {
+  login(credentials: LoginData): Observable<any> {
     console.log('Calling login API with credentials:', credentials);
     return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
       tap((response) => {

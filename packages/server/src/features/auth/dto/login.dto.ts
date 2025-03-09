@@ -1,7 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
+import { LoginData } from 'shared';
 
-export class SignInDto {
+
+export class LoginDto implements LoginData {
   @ApiProperty({
     description: 'The name or the email registered',
     example: 'username',

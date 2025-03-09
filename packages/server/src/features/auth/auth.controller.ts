@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiOperation, ApiTags, ApiResponse } from '@nestjs/swagger';
-import { SignInDto } from './dto/signin.dto';
+import { LoginDto } from './dto/login.dto';
 import { UserRole } from 'src/core/consts/enum';
 import { Public } from './auth.guard';
 import { RegisterDto } from './dto/register.dto';
@@ -19,12 +19,12 @@ export class AuthController {
   @ApiResponse({ status: 401, description: 'Wrong password or unauthorized' })
   @ApiResponse({ status: 404, description: 'User not found' })
   @ApiResponse({ status: 400, description: 'Bad request' })
-  async signIn(@Body() signInDto: SignInDto) {
-    if (!signInDto.username || !signInDto.password) {
+  async signIn(@Body() dto: LoginDto) {
+    if (!dto.username || !dto.password) {
       throw new Error('Username and password are required');
     }
-    const username = signInDto.username.trim();
-    const password = signInDto.password;
+    const username = dto.username.trim();
+    const password = dto.password;
     const result = await this.authService.signIn(username, password);
     return result;
   }

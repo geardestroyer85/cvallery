@@ -1,1 +1,1 @@
-// export const test = "Shared Working";
+export * from './auth'

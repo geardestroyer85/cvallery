@@ -3,7 +3,8 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 400px;
+  width: 90%;
+  max-width: 300px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -12,7 +13,6 @@
 
 .modal-content {
   h2.mat-headline-4 {
-    font-family: Arial, sans-serif;
     font-size: 24px;
     margin-bottom: 20px;
   }
@@ -22,39 +22,30 @@
     width: 100%;
   }
 
-  .form-column {
-    display: flex;
-    flex-direction: column;
-  }
-
-  input[matInput] {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    color: #000;
-  }
-
   .form-actions {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-
-    button[mat-raised-button] {
-      background-color: #4CAF50;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .forgot-password {
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      color: #4CAF50;
-      text-decoration: none;
-    }
+    gap: 15px; /* Adds spacing between the login button and register section */
   }
-    /* Add this to your login.component.scss file */
+
+  .login-button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .register-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .register-text {
+    margin: 0; /* Removes default paragraph margin for better alignment */
+    text-align: center;
+  }
+
   .error-message {
     color: red;
     margin-bottom: 10px;

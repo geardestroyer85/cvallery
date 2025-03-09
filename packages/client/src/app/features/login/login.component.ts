@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'] // corrected styleUrl to styleUrls
 })

@@ -27,6 +27,17 @@ export class AuthService {
     );
   }
   
+  register(userDetails: { username: string; email: string; password: string }): Observable<any> {
+    console.log('Calling register API with user details:', userDetails);
+    return this.http.post<any>(`${this.apiUrl}/register`, userDetails).pipe(
+      tap((response) => {
+        console.log('Register API response:', response);
+        const token = response.access_token;
+        localStorage.setItem('access_token', token);
+        this.setCookie('access_token', token, 1);
+      })
+    );
+  }
 
   logout(): void {
     localStorage.removeItem('access_token');

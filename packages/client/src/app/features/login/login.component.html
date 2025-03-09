@@ -3,7 +3,7 @@
     <h2 class="mat-headline-4" style="text-align: center">
       👋 Login to CVallery
     </h2>
-    <form (ngSubmit)="login()">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
       <mat-form-field appearance="fill">
         <mat-label>Username/Email</mat-label>
         <mat-icon matPrefix>person</mat-icon>
@@ -42,6 +42,7 @@
           type="submit"
           class="login-button"
           style="width: 100%; font-size: 16px"
+          [disabled]="!loginForm.form.valid"
         >
           Login
         </button>
